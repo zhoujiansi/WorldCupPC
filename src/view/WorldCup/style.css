@@ -1,0 +1,551 @@
+
+img{
+	width: 100%;
+	height: auto;
+}
+.noschedule{
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-size: 0.3rem;
+  line-height: 0.3rem;
+  height:0.3rem;
+  font-weight: bold;
+  margin-top: 10px;
+  /*margin-bottom: 1rem;*/
+}
+.WorldCup{
+    width: 1000px;
+    height: 3030px;
+    /*height: 100%;*/
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: url(../../assets/page1_bg.jpg) no-repeat top center;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+.WorldCup .qc{
+  width: 878px;
+  height: 574px;
+  margin-left: 61px;
+  margin-top: 50px;
+  background: url(../../assets/qc.jpg) no-repeat top center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  text-align: center;
+  padding-top:100px; 
+  box-sizing: border-box;
+}
+
+.WorldCup .schedule{
+    width: 100%;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+    z-index: 2;
+    position: relative;
+}
+.WorldCup .update {
+  width: 220px;
+    margin-top: 0.2rem;
+    /*margin-left: 2.43rem;*/
+    z-index: 3;
+    position: relative;
+}
+.WorldCup .schedule .countryA{
+  position: relative;
+    width: 360px;
+    height: 206px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+}
+.WorldCup .schedule .countryA .word{
+    position: absolute;
+    left: 0px;
+    background-color: rgb(174,14,20);
+    padding-right:150px;
+}
+.WorldCup .schedule .countryA .country{
+    position: absolute;
+    left: 156px;
+}
+.WorldCup .schedule .countryB{
+  position: relative;
+    width: 360px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+}
+.WorldCup .schedule .countryB .word{
+    position: absolute;
+    right: 0px;
+    background-color: rgb(31,65,109);
+    padding-left:150px;
+}
+/*.page1 .schedule .countryB .country{
+    position: absolute;
+    right: 1rem;
+}*/
+.WorldCup .word{
+    width: 340px;
+    height: 95px;
+    line-height: 95px;
+    z-index: 3;
+    font-size: 25px;
+    color: white;
+    word-wrap:break-word;
+    text-align: center;
+    box-sizing: border-box;
+    border-top: solid 2px yellow;
+    border-bottom: solid 2px yellow;
+}
+.WorldCup .country{
+    width: 204px;
+    z-index: 9;
+}
+
+.WorldCup .schedule .middle{
+    position: absolute;
+    left: 360px;
+    width: 158px;
+    color: black;
+    text-align: center;
+}
+
+.WorldCup .schedule .middle .time1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.WorldCup .schedule .middle .time2{
+    font-size: 30px;
+    font-weight: bold;
+}
+.WorldCup .schedule .middle .vs{
+    width: 145px;
+}
+.WorldCup .schedule .middle .group{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.WorldCup .guess{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items:center;
+    width: 100%;
+    padding: 20px;
+    z-index: 2;
+    box-sizing: border-box;
+}
+.WorldCup .guess .btn{
+    background: transparent url(../../assets/btn_bg.png) no-repeat center center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 220px;
+    height: 72px;
+    line-height: 72px;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    z-index: 2;
+    font-size: 30px;
+}
+.WorldCup .mySchedule{
+    position: relative;
+    width: 100%;
+    margin-top: 30px;
+    z-index: 2;
+}
+.WorldCup .mySchedule .sch_bg{
+    width: 100%;
+}
+.WorldCup .mySchedule .data{
+    position: absolute;
+    top: 86px;
+    width:878px;
+    height: 230px;
+    left: 61.5px;
+    color: white;
+    overflow: auto;
+    padding: 0px 56px;
+    box-sizing: border-box;
+}
+.WorldCup .mySchedule .data .suncounts{
+    text-align: left;
+    font-size: 30px;
+    color: #fbb81f;
+}
+.WorldCup .mySchedule .data .item{
+    padding-right: 0px;
+}
+.WorldCup .mySchedule .data .item .scheduleRow{
+    padding-left: 30px;
+    display: flex;
+    flex-direction: row;
+    /*justify-content:space-between;*/
+    /*align-items:center;*/
+}
+.WorldCup .mySchedule .data .item .scheduleRow .t1{
+    width: 15%
+}
+.WorldCup .mySchedule .data .item .scheduleRow .t2{
+    width: 30%;
+    text-align: center;
+}
+.WorldCup .mySchedule .data .item .scheduleRow .t3{
+    width: 7%;
+}
+.WorldCup .mySchedule .data .item .scheduleRow .t4{
+    width: 30%;
+    text-align: center;
+}
+.WorldCup .mySchedule .data .item .scheduleRow .t5{
+    width: 18%;
+    text-align:center;
+}
+
+.WorldCup .close{
+    width: 5%;
+    position: absolute;
+    right: 15%;
+    top: 18%;
+}
+.WorldCup .paint{
+    width: 86.875%;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 99;
+}
+.WorldCup .reword_pg{
+	width: 100%;
+	height: auto;
+	top: 10%;
+	position: absolute;
+}
+.WorldCup .ctn{
+    width: 100%;
+    bottom: 00%;
+    text-align: center;
+    position: absolute;
+}
+.WorldCup .ctn .btn3{
+    width: 44.6%;
+    margin-left: 27.7%;
+    margin-bottom: 2%;
+    display: block;
+}
+.WorldCup .ctn .share_03{
+    width: 51.875%;
+}
+.WorldCup .share_02{
+    width: 100%;
+    margin-top: 0%;
+}
+.WorldCup .btn2{
+    width: 41%;
+    margin-top: 32%;
+    margin-left: 29.5%;
+}
+.WorldCup .rewordid{
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    bottom: 0px;
+    width: 100%;
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color: #bababa;
+    font-weight: bolder;
+    font-size: 20px
+}
+input::-moz-placeholder { /* Mozilla  browsers */
+    color: #bababa;
+    font-weight: bolder;
+    font-size: 20px
+}
+input::-ms-input-placeholder { /* Internet  browsers */
+    color: #bababa;
+    font-weight: bolder;
+    font-size: 20px
+}
+.tips{
+  position: relative;
+  width: 100%;
+  top:5%;
+  text-align: center;
+}
+.tips .wc_01{
+  width: 320px;
+  z-index: 5;
+  position: relative;
+}
+.tips .wc_02{
+  width: 320px;
+  z-index: 5;
+  position: relative;
+}
+.tips .content{
+  width: 300px;
+  height: 160px;
+  margin-top: -50px;
+  margin-left: 350px;
+  background-color: white;
+  border-radius: 10px;
+  padding-top: 60px;
+  position: relative;
+  z-index: 1;
+}
+.tips .content .title{
+  color: #0081cc;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 26px;
+}
+.tips .content .accept_05{
+  width: 2.15rem;
+  position: absolute;
+  bottom: 0.1rem;
+  left: 0.925rem;
+}
+.tips .content .item{
+  padding:0rem 0.1rem; 
+  display: flex;
+  flex-direction: row;
+  /*justify-content:space-between;*/
+  align-items:flex-start;
+}
+.tips .content .item .left{
+  /*width: 10%;*/
+}
+.tips .content .item .middle{
+  width: 40%;
+  text-align: left;
+}
+.tips .content .item .right{
+  width: 50%;
+  text-align: left;
+}
+.tips .content .p1{
+    color: #000;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+}
+.tips .content .p2{
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0.1rem;
+}
+.tips .content .count{
+    color: rgb(236,74,74);
+    font-size: 30px;
+    margin: 20px 0px;
+}
+.tips .content .xzjf{
+    display: inline-block;
+    width: 30%;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: -8px;
+    text-align: center;
+    border:solid 1px black;
+    border-radius: 2px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+.tips .djtj{
+    width: 200px;
+    margin-top: 20px;
+}
+.sl{
+  width: 0.3rem;
+}
+.result_close{
+  width: 40px;
+  position: absolute;
+  right: 300px;
+  top: 15%;
+  z-index: 999;
+}
+.mask{
+  position: fixed;
+  width: 1000px;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 99;
+}
+.mybottom{
+  /*position: fixed;*/
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+  align-items:flex-end;
+  margin-top: 409px;
+  width: 1000px;
+  font-size: 0px;
+  z-index: 9;
+  padding: 0px 40px;
+  box-sizing: border-box;
+  border-bottom:solid white 2px;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    /*align-items:center;*/
+    padding:0rem 61px;
+    margin-top: 30px;
+    height: 1000px;
+}
+.row .wyRank{
+  /*width: 2.6rem;*/
+  width: 370px;
+  position: relative;
+}
+.row .wyRank .wytop{
+  width: 100%;
+  z-index: 2;
+  position: absolute;
+}
+.row .countsRank{
+  width: 498px;
+  position: relative;
+}
+.row .countsRank .counttop{
+   width: 100%;
+   z-index: 2;
+   position: absolute;
+}
+.cont1{
+  border:solid 1px rgb(41,122,162);
+  width: 94%;
+  position: absolute;
+
+  left:2%;
+  top:40px;
+  z-index: 1;
+  border-bottom-left-radius: 0.1rem;
+  border-bottom-right-radius: 0.1rem;
+}
+.cont2{
+  border:solid 1px rgb(41,122,162);
+  width: 100%;
+  position: absolute;
+  top:40px;
+  z-index: 1;
+  box-sizing: border-box;
+  border-bottom-left-radius: 0.1rem;
+  border-bottom-right-radius: 0.1rem;
+}
+.table{
+  font-size: 20px;
+  color: white;
+  /*border:solid 1px rgb(41,122,162);*/
+  box-sizing: border-box;
+  border-collapse: collapse;
+}
+.table1{
+  width: 100%;
+  /*margin-left: 4%;*/
+  margin-top: 80px;
+}
+.table2{
+  width: 100%;
+  margin-top: 80px;
+}
+
+table tbody {
+  display:block;
+  height:1100px;
+  overflow-y:auto;
+}
+table thead, tbody tr{
+  display:table;
+  width:100%;
+  table-layout:fixed;
+  font-weight: lighter;
+}
+tr{
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  box-sizing: border-box;
+}
+tr:nth-child(even){
+  background-color: rgb(31,124,194);
+}
+tr:nth-child(odd){
+  background-color: transparent;
+}
+th{
+  font-weight: lighter;
+  background-color: rgb(31,124,194);
+  height: 40px;
+  line-height: 40px;
+}
+td{
+  text-align: center;
+}
+.back_jc{
+  width: 1.53rem;
+  margin-left: 2.43rem;
+}
+.crow, .counts{
+  width: 40%;
+  position: absolute;
+  left: 30%;
+  top:15%;
+  z-index: 99;
+}
+
+
+.mybottom .item .bg1{
+  width: 134px;
+}
+.mybottom .item .bg2{
+  width: 135px;
+}
+.mybottom .item .bg3{
+  width: 181px;
+}
+.mybottom .item .bg4{
+  width: 152px;
+}
+.mybottom .item .bg5{
+  width: 153px;
+}
+.mybottom .item .bg6{
+  width: 135px;
+}
+.my-swipe {
+  /*position: fixed;*/
+  margin-top: 0px;
+  height: 165px;
+  width: 1000px;
+  color: #fff;
+  z-index: 9;
+}
+.slide img{
+  width: 100%;
+  height: 165px;
+}
+.share{
+  width: 454px;
+  z-index: 5;
+  position: relative;
+  box-sizing: border-box;
+}
