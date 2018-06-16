@@ -85,7 +85,8 @@ export default {
   },
   mounted: function() {  
       this.GetAllPrizeList();
-      let uid = getStorage("uid");
+      // let uid = getStorage("uid");
+      let uid = sessionStorage.getItem('uid');
       this.counts = getStorage("counts");
       this.WorldCupUseCounts = getStorage("WorldCupUseCounts");
       if(uid){

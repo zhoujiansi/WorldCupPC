@@ -88,7 +88,8 @@ export default {
   },
   mounted: function() { 
       this.GetScheduleAllList();
-      let uid = getStorage("uid");
+      // let uid = getStorage("uid");
+      let uid = sessionStorage.getItem('uid');
       if(uid){
         this.uid = uid;
       }

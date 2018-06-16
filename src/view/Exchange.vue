@@ -134,7 +134,8 @@ export default {
         this.PrizeIds=this.$route.params.PrizeIds;
         console.log("***PrizeIds***",this.PrizeIds);
       }
-      let uid = getStorage("uid");
+      // let uid = getStorage("uid");
+      let uid = sessionStorage.getItem('uid');
       if(uid){
         this.uid = uid;
       }

@@ -35,7 +35,8 @@ export default {
       showCathectic:false,
       showSuccess:false,
       showMySchedule:false,
-      shareshow:false
+      shareshow:false,
+      guessFlag:false,
     }
   },
   computed: mapState(['userdata','adverList']),
@@ -107,7 +108,7 @@ export default {
         }
         else{
           alert("您还没有登录，请登录后再试");
-          this.$router.push({name: 'Login'});
+          // this.$router.push({name: 'Login'});
           return false;
         }
       }else{
@@ -116,7 +117,7 @@ export default {
     },
     // 开始竞猜
     startGuess(info){
-      if(Number(this.xzjf)>0&&Number(this.xzjf)<Number(this.sumcounts)){
+      if(Number(this.xzjf)>0&&Number(this.xzjf)<=Number(this.sumcounts)){
         this.showCathectic= false;
         const parm = {
           "ScheduleId":this.scheduleList[this.scheduleIndex].id, //赛程
@@ -135,7 +136,11 @@ export default {
     },
     // 下注
     async SaveGuess (parm) { //获取赛程
-      this.isLoading=true
+      this.isLoading=true;
+      if(this.guessFlag){
+        return false;
+      }
+      this.guessFlag=true;
       let result = await SaveGuess(parm)
       let data = result.data;
       this.isLoading=false;
@@ -145,6 +150,7 @@ export default {
       else{
         alert(data.message);
       }
+      this.guessFlag=false;
       // this.scheduleList =data.data;
       console.log("***SaveGuess***",data);
     },

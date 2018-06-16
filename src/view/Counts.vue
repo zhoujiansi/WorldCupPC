@@ -68,7 +68,8 @@
             </div>
           </div>
           <div class="result">
-            <div>竞猜：{{guess.type=='竞猜中'?'竞猜中':(guess.data2=='胜'?'['+guess.guess+']获胜':'['+(guess.guess==guess.countryA?guess.countryB:guess.countryA)+']获胜')}}</div>
+            <!-- <div>竞猜：{{guess.type=='竞猜中'?'竞猜中':(guess.data2=='胜'?'['+guess.guess+']获胜':'['+(guess.guess==guess.countryA?guess.countryB:guess.countryA)+']获胜')}}</div> -->
+            <div>竞猜：{{'['+guess.guess+'获胜]'}}</div>
             <div>{{guess.type=='竞猜中'?'竞猜中':(guess.data2=='胜'?'获得['+guess.data1+']积分':'扣除['+guess.counts+']积分')}} </div>
           </div>
         </div>
@@ -143,14 +144,15 @@ export default {
   mounted: function() {  
       // this.GetAllPrizeList();
       
-      let uid = getStorage("uid");
+      // let uid = getStorage("uid");
+      let uid = sessionStorage.getItem('uid');
       if(uid){
         this.uid = uid;
         this.GetActionList(this.uid)
         this.GetMyInfo(this.uid)
       } else {
         alert("您还没有登录，请登录后再试");
-        this.$router.push({name: 'Login'});
+        // this.$router.push({name: 'Login'});
         return false;
       }
   },

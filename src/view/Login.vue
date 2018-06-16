@@ -312,7 +312,7 @@ export default {
       }
       console.log('*********',data)
       this.isLoading=false;
-      setStorage('uid',data.data);// 用户ID
+      sessionStorage.setItem('uid',data.userdata.id);
       setStorage('counts',data.userdata.counts);// 用户数据
       setStorage('WorldCupUseCounts',data.userdata.WorldCupUseCounts);// 用户数据
       // this.$store.commit('SET_USERDATA',data.userdata);
@@ -362,7 +362,8 @@ export default {
       }
       this.isLoading=false;
       // console.log('****register*****',result,data)
-      setStorage('uid',data.data.id);// 用户ID
+      // setStorage('uid',data.data.id);// 用户ID
+      sessionStorage.setItem('uid',data.data.id);// 用户ID
       // this.$store.commit('SET_USERDATA',data.data);
       setStorage('counts',data.data.counts);// 用户数据
       alert(data.message);
