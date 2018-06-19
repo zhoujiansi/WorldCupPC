@@ -1,6 +1,6 @@
 <template>
   <div class="Accept-body">
-    <login></login>
+    <login :showLogin="showLogin" v-on:operate="operate"></login>
     <!-- <div class="top">
         <img src="../assets/top_bg.png" class="top_bg" />
     </div> -->
@@ -67,6 +67,7 @@ export default {
   name: 'Accept',
   data () {
       return {
+        showLogin:false,
         prizeList:[],
         prizeIds:[],
         showFlag:false,
@@ -94,6 +95,9 @@ export default {
       }
   },
   methods:{
+    operate(status){
+      this.showLogin=false;
+    },
     closeshow(){
       this.shareshow=false;
     },

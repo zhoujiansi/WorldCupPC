@@ -1,6 +1,6 @@
 <template>
   <div class="Schedule-body">
-    <login></login>
+    <login :showLogin="showLogin" v-on:operate="operate"></login>
     <div class="mybottom">
       <div class="item" @click="select(1)">
         <img src="../assets/bottom1_1.png" class="bg1" v-show="selectIndex!=1"><img src="../assets/bottom2_1.png" class="bg1" v-show="selectIndex==1">
@@ -65,6 +65,7 @@ export default {
   name: 'Schedule',
   data () {
       return {
+        showLogin:false,
         scheduleList:[],
         isLoading:false,
         uid:null,
@@ -95,6 +96,9 @@ export default {
       }
   },
   methods:{
+    operate(status){
+      this.showLogin=false;
+    },
     closeshow(){
       this.shareshow=false;
     },

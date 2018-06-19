@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <login></login>
+    <login :showLogin="showLogin" v-on:operate="operate"></login>
     <div class="mybottom">
       <div class="item" @click="select(1)">
         <img src="../assets/bottom1_1.png" class="bg1" v-show="selectIndex!=1"><img src="../assets/bottom2_1.png" class="bg1" v-show="selectIndex==1">
@@ -33,8 +33,8 @@
           <div class="d2"><span class="s3" @click="showResultRule(true)">查看积分历史</span></div>
         </div>
         <div class="t1">
-          <div class="d1"><span class="s1">积分榜:</span><span class="s2">{{myInfo.position + 1}}</span></div>
-          <div class="d2"><span class="s1">乌鸦帝榜:</span><span class="s2">{{myInfo.crowposition + 1}}</span></div>
+          <div class="d1"><span class="s1">积分榜:</span><span class="s2">{{myInfo.position?(myInfo.position+1): ""}}</span></div>
+          <div class="d2"><span class="s1">乌鸦帝榜:</span><span class="s2">{{myInfo.crowposition?(myInfo.crowposition + 1):""}}</span></div>
         </div>
       </div>
       <div class="right">
@@ -110,6 +110,7 @@ export default {
   name: 'Counts',
   data () {
       return {
+        showLogin:false,
         myInfo:{data:{counts:""}},
         actionList:[],
         mywidth:"0rem",
@@ -152,11 +153,15 @@ export default {
         this.GetMyInfo(this.uid)
       } else {
         alert("您还没有登录，请登录后再试");
+        this.showLogin=true;
         // this.$router.push({name: 'Login'});
         return false;
       }
   },
   methods:{
+    operate(status){
+      this.showLogin=false;
+    },
     skip(item){
       // console.log(item);
       window.location.href=item.href;

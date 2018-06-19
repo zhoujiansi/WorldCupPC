@@ -1,6 +1,6 @@
 <template>
   <div class="result-container">
-    <login></login>
+    <login :showLogin="showLogin" v-on:operate="operate"></login>
     <div class="top">
         <img src="../assets/top_bg.png" class="top_bg" />
     </div>
@@ -105,6 +105,7 @@
     name: 'Result',
     data () {
       return {
+        showLogin:false,
         rankList:[],
         crowRankList:[],
         isLoading:false,
@@ -129,6 +130,9 @@
       }
     },
     methods:{
+      operate(status){
+      this.showLogin=false;
+    },
       closeshow(){
         this.shareshow=false;
       },

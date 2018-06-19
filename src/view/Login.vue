@@ -7,7 +7,7 @@
       <div class="t2" @click="goRegister">免费注册</div>
       <div class="t3" @click="goshow"><img src="../assets/wx_share.png" class="wx_share"></div>
     </div>
-    <div class="login-body" v-show="showContainer">
+    <div class="login-body" v-show="showLogin">
       <div class="login-body-container">
         <!-- <img src="../assets/logo.png" class="logo"> -->
         <img src="../assets/login_close.png" class="login_close" @click="goback">
@@ -202,9 +202,10 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Login',
+  props:['showLogin'],
   data () {
     return {
-      showContainer:false,
+      // showContainer:false,
       info:'',
       phone: '',
       nickname: '',
@@ -256,12 +257,12 @@ export default {
     },
     goLogin(){
       // window.location.href=item.href;
-      this.showContainer=true;
+      this.showLogin=true;
       this.model="登录";
     },
     goRegister(){
       // window.location.href=item.href;
-      this.showContainer=true;
+      this.showLogin=true;
       this.model="会员注册";
     },
     skip(item){
@@ -312,6 +313,7 @@ export default {
       }
       console.log('*********',data)
       this.isLoading=false;
+      
       sessionStorage.setItem('uid',data.userdata.id);
       setStorage('counts',data.userdata.counts);// 用户数据
       setStorage('WorldCupUseCounts',data.userdata.WorldCupUseCounts);// 用户数据
@@ -319,7 +321,8 @@ export default {
       if(this.check1){ // 记住密码
         setStorage('pwd',this.pwd) //记录登录用户的登陆密码
       }
-      this.$router.go(-1);
+      this.$emit('operate', false)
+      // this.$router.go(-1);
     },
     async register () { //注册
       if(!this.phone||!this.nickname||!this.Email||!this.pwd||!this.confirmPwd){
@@ -367,6 +370,7 @@ export default {
       // this.$store.commit('SET_USERDATA',data.data);
       setStorage('counts',data.data.counts);// 用户数据
       alert(data.message);
+      this.$emit('operate', false)
     },
     async updatePwd () { //注册
       if(!this.phone||!this.Email){
@@ -412,7 +416,8 @@ export default {
     goback(){
       // 返回上一页
       // this.$router.go(-1);
-      this.showContainer=false;
+      // this.showLogin=false;
+      this.$emit('operate', false)
     }
   },
   watch:{

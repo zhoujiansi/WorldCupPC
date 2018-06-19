@@ -11,6 +11,7 @@ export default {
   name: 'WorldCup',
   data () {
     return {
+      showLogin:false,
       rankList:[],
       crowRankList:[],
       scheduleList:[],
@@ -47,7 +48,7 @@ export default {
     this.GetScheduleList();
     this.GetRankList();
     this.GetCrowRankList();
-    let uid = getStorage("uid");
+    let uid = sessionStorage.getItem('uid');
     if(uid){
       this.uid = uid;
       this.showMySchedule=true;
@@ -71,6 +72,9 @@ export default {
     }
   },
   methods:{
+    operate(status){
+      this.showLogin=false;
+    },
     closeshow(){
         this.shareshow=false;
       },
@@ -109,6 +113,7 @@ export default {
         else{
           alert("您还没有登录，请登录后再试");
           // this.$router.push({name: 'Login'});
+          this.showLogin=true;
           return false;
         }
       }else{

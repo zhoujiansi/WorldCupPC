@@ -1,6 +1,6 @@
 <template>
   <div class="Rule-body">
-    <login></login>
+    <login :showLogin="showLogin" v-on:operate="operate"></login>
     <div class="mybottom">
       <div class="item" @click="select(1)">
         <img src="../assets/bottom1_1.png" class="bg1" v-show="selectIndex!=1"><img src="../assets/bottom2_1.png" class="bg1" v-show="selectIndex==1">
@@ -40,12 +40,12 @@
       <div class="answer" v-show="showIndex==2">
         <img src="../assets/mao1.png" class="mao1">
         <img src="../assets/mao2.png" class="mao2">
-        <p>1、每个用户注册成功后即可获赠初始积分1000分</p>
-        <!-- <p>2、每个用户每日登录活动可获赠100积分。</p> -->
-        <p>2、用户通过手机端进入活动页面分享活动至朋友圈可获赠200积分（每日最多可获赠200积分，活动期间累积不超过20次）</p>
+        <p>1、每个用户注册成功后即可获赠初始积分2000分</p>
+        <p>2、每个用户每日登录活动可获赠200积分。</p>
+        <p>3、用户通过手机端进入活动页面分享活动至朋友圈可获赠300积分（每日最多可获赠300积分，活动期间累积不超过20次）</p>
         <!-- <p>4、成功邀请他人注册可获赠300积分。（最多获赠15000分）</p> -->
-        <p>3、通过每日竞猜首页下方进入哈希天猫店铺可获赠50积分（每日最多获赠50积分）</p>
-        <p>4、通过比赛竞猜获取积分（详见竞猜规则）</p>
+        <p>4、通过每日竞猜首页下方进入哈希天猫店铺可获赠100积分（每日最多获赠100积分）</p>
+        <p>5、通过比赛竞猜获取积分（详见竞猜规则）</p>
       </div>
       <div class="word" @click="show(3)">如何下注竞猜？</div>
       <div class="answer" v-show="showIndex==3">
@@ -134,6 +134,7 @@ export default {
   name: 'Rule',
   data () {
       return {
+        showLogin:false,
         showIndex:0,
         isLoading:false,
         uid:null,
@@ -146,6 +147,9 @@ export default {
     login,
   },
   methods:{
+    operate(status){
+      this.showLogin=false;
+    },
     closeshow(){
       this.shareshow=false;
     },

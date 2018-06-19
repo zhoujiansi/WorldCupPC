@@ -1,6 +1,6 @@
 <template>
   <div class="body">
-    <login></login>
+    <login :showLogin="showLogin" v-on:operate="operate"></login>
     <div class="top">
         <img src="../assets/top_bg.png" class="top_bg" />
     </div>
@@ -108,6 +108,7 @@ export default {
   name: 'Exchange',
   data () {
       return {
+        showLogin:false,
         prizeList:[],
         PrizeIds:"",
         IsShow:false, // 是从事该职业,默认不是
@@ -141,6 +142,9 @@ export default {
       }
   },
   methods:{
+    operate(status){
+      this.showLogin=false;
+    },
     closeshow(){
       this.shareshow=false;
     },
