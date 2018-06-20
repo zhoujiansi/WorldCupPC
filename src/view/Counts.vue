@@ -102,7 +102,7 @@
 
 <script>
 import login from './Login.vue'
-import {GetActionList,GetMyInfo} from '../utils/service'
+import {GetActionList,GetMyInfo,TMWorldCup} from '../utils/service'
 import {formatDate} from '../utils/time'
 import {setStorage , getStorage} from '../server/localStorage'
 import { mapState } from 'vuex'
@@ -164,7 +164,19 @@ export default {
     },
     skip(item){
       // console.log(item);
-      window.location.href=item.href;
+      // window.location.href=item.href;
+      this.TMWorldCup();
+      window.open(item.href);
+    },
+    async TMWorldCup () { //获取赛程
+        this.isLoading=true
+        const parm = {
+          pdataid: this.uid,
+        }
+        let result = await TMWorldCup(parm)
+        let data = result.data;
+        setStorage('counts',data.data.counts);// 用户数据
+        this.isLoading=false;
     },
     closeshow(){
       this.shareshow=false;

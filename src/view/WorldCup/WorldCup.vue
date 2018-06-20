@@ -2,7 +2,7 @@
 
 <script>
   import login from '../Login.vue'
-import {GetScheduleTimeList , GetScheduleListByID,SaveGuess, GetCrowRankList, GetRankList} from '../../utils/service'
+import {GetScheduleTimeList , GetScheduleListByID,SaveGuess, GetCrowRankList, GetRankList,TMWorldCup} from '../../utils/service'
 import {formatDate} from '../../utils/time'
 import {setStorage , getStorage} from '../../server/localStorage'
 import { mapState } from 'vuex'
@@ -73,7 +73,8 @@ export default {
   },
   methods:{
     operate(status){
-      this.showLogin=false;
+      console.log("******operate******",status)
+      this.showLogin=status;
     },
     closeshow(){
         this.shareshow=false;
@@ -86,7 +87,19 @@ export default {
     },
     skip(item){
       // console.log(item);
-      window.location.href=item.href;
+      // window.location.href=item.href;
+      this.TMWorldCup();
+      window.open(item.href);
+    },
+    async TMWorldCup () { //获取赛程
+        this.isLoading=true
+        const parm = {
+          pdataid: this.uid,
+        }
+        let result = await TMWorldCup(parm)
+        let data = result.data;
+        setStorage('counts',data.data.counts);// 用户数据
+        this.isLoading=false;
     },
     // 关闭下注弹窗
     showResultRule(status){

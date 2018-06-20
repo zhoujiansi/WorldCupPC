@@ -196,7 +196,7 @@
 
 import inputComponent from '../components/input-component'
 import confirmComponent from '../components/confirm-component'
-import {Login, Register, updatePwd, setUserTokenCookie} from '../utils/service'
+import {Login, Register, updatePwd, setUserTokenCookie,TMWorldCup} from '../utils/service'
 import {setStorage , getStorage} from '../server/localStorage'
 import { mapState } from 'vuex'
 
@@ -257,16 +257,29 @@ export default {
     },
     goLogin(){
       // window.location.href=item.href;
-      this.showLogin=true;
+      // this.showLogin=true;
+      this.$emit('operate', true)
       this.model="登录";
     },
     goRegister(){
       // window.location.href=item.href;
-      this.showLogin=true;
+      // this.showLogin=true;
+      this.$emit('operate', true)
       this.model="会员注册";
     },
     skip(item){
-      window.location.href=item.href;
+      this.TMWorldCup();
+      window.open(item.href);
+    },
+    async TMWorldCup () { //获取赛程
+        this.isLoading=true
+        const parm = {
+          pdataid: this.uid,
+        }
+        let result = await TMWorldCup(parm)
+        let data = result.data;
+        setStorage('counts',data.data.counts);// 用户数据
+        this.isLoading=false;
     },
     loginCheck () {
       this.check1 =! this.check1;

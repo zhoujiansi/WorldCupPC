@@ -59,7 +59,7 @@
 
 <script>
   import login from './Login.vue'
-import {GetAllPrizeList} from '../utils/service'
+import {GetAllPrizeList,TMWorldCup} from '../utils/service'
 import {formatDate} from '../utils/time'
 import {setStorage , getStorage} from '../server/localStorage'
 import { mapState } from 'vuex'
@@ -103,7 +103,8 @@ export default {
     },
     skip(item){
       // console.log(item);
-      window.location.href=item.href;
+      this.TMWorldCup();
+      window.open(item.href);
     },
     show(index){
       alert("礼物兑换将在2018-07-16 08时开始");
@@ -139,6 +140,16 @@ export default {
         alert("请选择礼品后兑换");
         return false;
       }
+    },
+    async TMWorldCup () { //获取赛程
+        this.isLoading=true
+        const parm = {
+          pdataid: this.uid,
+        }
+        let result = await TMWorldCup(parm)
+        let data = result.data;
+        setStorage('counts',data.data.counts);// 用户数据
+        this.isLoading=false;
     },
     async GetAllPrizeList () { //获取赛程
         this.isLoading=true

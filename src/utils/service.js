@@ -307,6 +307,23 @@ export const AcceptPrize = async (prama) => {
   return data
 }
 /*
+ *天猫点击
+ */
+export const TMWorldCup = async (prama) => {
+  let url = config.domain.user + "/WorldCup/TMWorldCup";
+  let params={
+    "pdataid":prama.pdataid, //id
+  };
+  let urlStr = url + `?${translateParams(params)}`
+  let parameters = {
+    url: urlStr,
+    method: 'GET',
+    data: translateParams(params)
+  }
+  let data = await axios.request(parameters)
+  return data
+}
+/*
  *写入和讯cookie
  */
 export const setUserTokenCookie = async (prama) => {

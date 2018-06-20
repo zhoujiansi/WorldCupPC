@@ -98,7 +98,7 @@
 
 <script>
   import login from './Login.vue'
-  import {GetRankList , GetCrowRankList} from '../utils/service'
+  import {GetRankList , GetCrowRankList,TMWorldCup} from '../utils/service'
   import {setStorage , getStorage} from '../server/localStorage'
   import { mapState } from 'vuex'
   export default {
@@ -138,8 +138,19 @@
       },
       skip(item){
         // console.log(item);
-        window.location.href=item.href;
+        this.TMWorldCup();
+        window.open(item.href)
       },
+      async TMWorldCup (href) { //获取赛程
+        this.isLoading=true
+        const parm = {
+          pdataid: this.uid,
+        }
+        let result = await TMWorldCup(parm)
+        let data = result.data;
+        setStorage('counts',data.data.counts);// 用户数据
+        this.isLoading=false;
+    },
       back_jc(){
         // WeixinJSBridge.call('closeWindow');
         this.$router.push({name: 'WorldCup'});
