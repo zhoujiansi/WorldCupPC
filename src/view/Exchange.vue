@@ -1,9 +1,6 @@
 <template>
   <div class="body">
     <login :showLogin="showLogin" v-on:operate="operate"></login>
-    <div class="top">
-        <img src="../assets/top_bg.png" class="top_bg" />
-    </div>
     <div class="ex_01">
       <div class="box-input">
           <div class="box-icon">
@@ -247,7 +244,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .body{
-  width: 100%;
+  width: 1000px;
   height: 100%;
   /*background-color: #ffffff;*/
   background: url(../assets/page1_bg.jpg) no-repeat top center;
@@ -382,26 +379,44 @@ export default {
   height: 1.28rem;
 }
 .mybottom{
-  position: fixed;
+  /*position: fixed;*/
   display: flex;
   flex-direction: row;
   justify-content:space-between;
-  align-items:center;
-  bottom: 0px;
-  width: 100%;
+  align-items:flex-end;
+  margin-top: 409px;
+  width: 1000px;
   font-size: 0px;
+  z-index: 9;
+  padding: 0px 40px;
+  box-sizing: border-box;
+  border-bottom:solid white 2px;
 }
-.mybottom .item .bg{
-  width: 1.28rem;
+.mybottom .item .bg1{
+  width: 134px;
+}
+.mybottom .item .bg2{
+  width: 135px;
+}
+.mybottom .item .bg3{
+  width: 181px;
+}
+.mybottom .item .bg4{
+  width: 152px;
+}
+.mybottom .item .bg5{
+  width: 153px;
+}
+.mybottom .item .bg6{
+  width: 135px;
 }
 .my-swipe {
-  position: fixed;
-  bottom: 0.91rem;
-  height: 1.04rem;
-  width: 6.4rem;
+  /*position: fixed;*/
+  margin-top: 0px;
+  height: 165px;
+  width: 1000px;
   color: #fff;
-  font-size: 30px;
-  text-align: center;
+  z-index: 9;
 }
 .slide img{
   width: 100%;

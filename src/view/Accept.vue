@@ -54,12 +54,77 @@
         <img src="../assets/share.png" class="share">
       </div>
     </div>
+    <div class="mask" v-show="shareselect">
+      <img src="../assets/result_close.png" class="result_close" @click="closeselect()" />
+      <div class="tips">
+        <img src="../assets/accept_08.png" class="accept_08"  />
+          <div class="content">
+            <div class="ex_01">
+              <div class="box-input">
+                  <div class="box-icon">
+                    *姓名：
+                  </div>
+                  <div class="input-container">
+                    <input type="text" v-model="name" placeholder="请输入姓名"/>
+                  </div>
+              </div>
+              <div class="box-input">
+                  <div class="box-icon">
+                    *手机号码：
+                  </div>
+                  <div class="input-container">
+                    <input type="tel" v-model="phone"  placeholder="请输入手机号码"/>
+                  </div>
+              </div>
+              <div class="box-input">
+                  <div class="box-icon">
+                    *公司名称：
+                  </div>
+                  <div class="input-container">
+                    <input type="text" v-model="company"  placeholder="请输入公司名称"/>
+                  </div>
+              </div>
+              <div class="box-input">
+                  <div class="box-icon">
+                    *收件地址：
+                  </div>
+                  <div class="input-container">
+                    <input type="text" v-model="zip" placeholder="请输入收件地址"/>
+                  </div>
+              </div>
+              <div class="change">
+                <div class="word">*您是否从事水质检测相关工作？</div>
+                <div class="select">
+                  <div class="t1" @click="show(true)">
+                    <img src="../assets/no.png" class="icon" v-show="!IsShow" /><img src="../assets/yes.png" class="icon" v-show="IsShow" /><span>是</span></div>
+                  <div class="t2" @click="show(false)">
+                    <img src="../assets/no.png" class="icon" v-show="IsShow" /><img src="../assets/yes.png" class="icon" v-show="!IsShow" /><span>否</span></div>
+                </div>
+              </div>
+              <div class="btndiv">
+                <!-- <img src="../assets/ex_02.png" class="ex_02" @click="goback"/> -->
+                <img src="../assets/ex_03.png" class="ex_03" @click="submit"/>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="mask" v-show="showResult">
+      <img src="../assets/result_close.png" class="result_close" @click="showResultRule(false)" />
+      <div class="tips">
+        <img src="../assets/ex_04.png" class="ex_04"  />
+        <div class="content content1">
+          恭喜您，您已成功兑换{{result}} 礼品将在1个月内寄出，因礼品寄送量较大如部分礼品缺货我们将以同等价值其他礼品进行补寄，还请理解。
+          后期将有哈希客服与您电话核实相关礼品信息，请您注意接听来自西安的客服电话。
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import login from './Login.vue'
-import {GetAllPrizeList,TMWorldCup} from '../utils/service'
+import {GetAllPrizeList,TMWorldCup,AcceptPrize} from '../utils/service'
 import {formatDate} from '../utils/time'
 import {setStorage , getStorage} from '../server/localStorage'
 import { mapState } from 'vuex'
@@ -77,7 +142,16 @@ export default {
         counts:null,
         WorldCupUseCounts:null,
         selectIndex:4,
-        shareshow:false
+        shareshow:false,
+        shareselect:false,  //是否显示寄送信息
+        showResult:false,  //是否显示兑奖结果信息
+        IsShow:false, // 是从事该职业,默认不是
+        name:null,
+        company:null,
+        zip:null,
+        phone:null,
+        data8:'否',
+        result:"",
       }
   },
   computed: mapState(['userdata','adverList']),
@@ -95,28 +169,37 @@ export default {
       }
   },
   methods:{
+    showResultRule(status){
+      this.showResult=false;
+    },
     operate(status){
       this.showLogin=false;
     },
     closeshow(){
       this.shareshow=false;
     },
+    closeselect(){
+      this.shareselect=false;
+    },
     skip(item){
       // console.log(item);
       this.TMWorldCup();
       window.open(item.href);
     },
-    show(index){
-      alert("礼物兑换将在2018-07-16 08时开始");
-      return false;
-      // if(this.uid==null){
-      //   alert("您还没有登录，请登录后再试");
-      //   this.$router.push({name: 'Login'});
-      //   return false;
-      // }
-      // else{
-      //   this.showFlag = index;
-      // }
+    show(status){
+      // alert("礼物兑换将在2018-07-16 08时开始");
+      // return false;
+      if(this.uid==null){
+        alert("您还没有登录，请登录后再试");
+        this.showLogin=true;
+        return false;
+      }
+      else if(this.dateTime<"2018-07-16 08:00:00"){
+        alert("礼物兑换将在2018-07-16 08时开始")
+      }
+      else{
+        this.showFlag = status;
+      }
     },
     select(id){
       if(this.prizeIds.includes(id)){
@@ -129,17 +212,56 @@ export default {
     },
     exchange(){
       if(this.prizeIds.length>0){
-        // if(this.dateTime<"2018-07-16 08:00:00"){
-        //   alert("礼物兑换将在2018-07-16 08时开始")
-        // }
-        // else{
-          this.$router.push({name: 'Exchange', params: {PrizeIds: this.prizeIds.join(",")}});
-        // }
+        if(this.dateTime<"2018-07-16 08:00:00"){
+          alert("礼物兑换将在2018-07-16 08时开始")
+        }
+        else{
+          this.shareselect=true;
+          this.showFlag=false;
+        }
         
       } else {
         alert("请选择礼品后兑换");
         return false;
       }
+    },
+    async submit () { //提交
+      if(this.prizeIds==null || this.uid==null|| this.name==null
+        || this.phone==null|| this.company==null|| this.zip==null|| this.data8==null){
+        alert("请填好数据后提交");
+        return false;
+      }
+      let checkUserPhone = /^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$/
+      if (!checkUserPhone.test(this.phone)) {
+        // console.log('手机号验证通过');
+        alert("请输入正确的手机号");
+        return false;
+      }
+        const params={
+          "PrizeIds":this.prizeIds.join(","), //
+          "pdataid":this.uid, //登录人id
+          "name":this.name, //
+          "phone":this.phone, //
+          "company":this.company, //
+          "zip":this.zip, //
+          "data8":this.data8, //
+        }
+        console.log(params)
+        this.isLoading=true
+        let result = await AcceptPrize(params)
+        let data = result.data;
+        this.isLoading=false;
+        // this.prizeList =data.data;
+        if(data.success==false){
+          alert(data.message);
+        }
+        else{
+          this.result=data.result;
+          this.showResult=true; // 显示提示
+          this.shareselect=false;
+          setStorage('counts',data.data.counts);// 用户数据
+          setStorage('WorldCupUseCounts',data.data.WorldCupUseCounts);// 用户数据
+        }
     },
     async TMWorldCup () { //获取赛程
         this.isLoading=true
@@ -238,33 +360,51 @@ export default {
   width: 1000px;
   top:5%;
   text-align: center;
+  font-size: 16px;
 }
 .tips .accept_04{
   width: 420px;
   z-index: 5;
   position: relative;
 }
+.tips .ex_04{
+  width: 472px;
+  z-index: 5;
+  position: relative;
+}
+.tips .accept_08{
+  width: 416px;
+  z-index: 5;
+  position: relative;
+}
 .tips .content{
   width: 360px;
-  height: 370px;
-  margin-top: -0.5rem;
+  height: 300px;
+  margin-top: -0.3rem;
   margin-left:320px;
   background-color: white;
   border-radius: 0.1rem;
-  padding-top: 0.5rem;
+  padding-top: 0.3rem;
   position: relative;
   z-index: 1;
+}
+.tips .content1{
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 18px;
+  height: 230px;
+  box-sizing: border-box;
 }
 .tips .content .title{
   color: #0081cc;
   font-size: 20px;
   text-align: center;
-  margin-bottom: 0.2rem;
+  margin-bottom: 20px;
 }
 .tips .content .accept_05{
   width: 168px;
   position: absolute;
-  bottom: 0.1rem;
+  bottom: 15px;
   left: 100px;
 }
 .tips .content .item{
@@ -286,11 +426,83 @@ export default {
   width: 50%;
   text-align: left;
 }
+.tips .ex_01{
+  font-size: 16px;
+}
+.tips .box-input{
+  display: flex;
+  margin: 0 auto;
+  margin-bottom:10px;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  /*margin-left: 10px;*/
+  border-radius: 10px;
+  
+  background-color: rgba(255,255,255,0.6);
+  box-sizing: border-box;
+}
+.tips .box-input .box-icon{
+  width: 30%;
+  padding-left: 0px;
+  text-align: right;
+}
+.tips .box-input .input-container{
+  width: 70%;
+  padding-right: 20px;
+  overflow: hidden;
+  height: 35px;
+  line-height: 35px;
+  
+  /*box-sizing: border-box;*/
+  font-size: 0px;
+}
+.tips .box-input .input-container input{
+  border:solid 3px rgb(85,188,246);
+  height: 35px;
+  line-height: 35px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.tips .change{
+  background-color: rgba(255,255,255,0.6);
+  padding:5px 20px;
+  width: 100%;
+  /*height: 0.6rem;*/
+  /*line-height: 0.6rem;*/
+  /*margin-left: 20px;*/
+  box-sizing: border-box;
+  text-align: left;
+}
+.tips .change .select{
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  /*justify-content:space-around;*/
+  align-items:center;
+}
+.tips .change .select .t1{
+  margin-right: 10px;
+}
+.tips .change .icon{
+  width: 16px;
+  margin-right: 10px;
+}
+.tips .btndiv{
+  width: 100%;
+  text-align: center;
+  /*margin-top: 20px;*/
+}
+.tips .btndiv .ex_03{
+  width: 100px;
+}
 .sl{
   width: 20px;
 }
 .result_close{
-  width: 0.4rem;
+  width: 0.2rem;
   position: absolute;
   right: 1.05rem;
   top: 20%;
