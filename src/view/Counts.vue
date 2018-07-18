@@ -160,7 +160,8 @@ export default {
   },
   methods:{
     operate(status){
-      this.showLogin=false;
+      console.log("******operate******",status)
+      this.showLogin=status;
     },
     skip(item){
       // console.log(item);

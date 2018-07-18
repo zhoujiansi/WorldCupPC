@@ -147,7 +147,8 @@ export default {
   },
   methods:{
     operate(status){
-      this.showLogin=false;
+      console.log("******operate******",status)
+      this.showLogin=status;
     },
     closeshow(){
       this.shareshow=false;

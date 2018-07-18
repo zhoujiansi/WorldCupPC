@@ -258,6 +258,7 @@ export default {
     goLogin(){
       // window.location.href=item.href;
       // this.showLogin=true;
+      console.log("&&&&&&goLogin:")
       this.$emit('operate', true)
       this.model="登录";
     },

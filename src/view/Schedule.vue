@@ -1,6 +1,6 @@
 <template>
   <div class="Schedule-body">
-    <login :showLogin="showLogin" v-on:operate="operate"></login>
+    <login :showLogin="showLogin" @operate="operate"></login>
     <div class="mybottom">
       <div class="item" @click="select(1)">
         <img src="../assets/bottom1_1.png" class="bg1" v-show="selectIndex!=1"><img src="../assets/bottom2_1.png" class="bg1" v-show="selectIndex==1">
@@ -97,7 +97,8 @@ export default {
   },
   methods:{
     operate(status){
-      this.showLogin=false;
+      console.log("******operate******",status)
+      this.showLogin=status;
     },
     closeshow(){
       this.shareshow=false;
