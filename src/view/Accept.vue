@@ -191,6 +191,9 @@ export default {
       // alert("礼物兑换将在2018-07-16 08时开始");
       // return false;
       let uid = sessionStorage.getItem('uid');
+      if(uid){
+        this.uid = uid;
+      }
       if(this.uid==null){
         alert("您还没有登录，请登录后再试");
         this.showLogin=true;
